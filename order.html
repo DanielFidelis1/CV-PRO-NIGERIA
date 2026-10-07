@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Your CV - CVPro Nigeria</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            CVPro<span>Nigeria</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="customer-dashboard.html">
+                My Dashboard
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ORDER PAGE -->
+
+    <main class="order-page">
+
+        <div class="order-header">
+
+            <p class="section-small">
+                GET STARTED
+            </p>
+
+            <h1>
+                Let's build your CV.
+            </h1>
+
+            <p>
+                Fill in your details below and
+                we'll use them to create your
+                professional CV.
+            </p>
+
+        </div>
+
+
+        <form
+        id="order-form"
+        class="order-form"
+        >
+
+            <!-- PACKAGE -->
+
+            <div class="form-section">
+
+                <h2>
+                    1. Choose your package
+                </h2>
+
+                <label for="plan">
+                    Package
+                </label>
+
+                <select
+                    id="plan"
+                    name="plan"
+                    required
+                >
+
+                    <option value="">Select a package</option>
+                    <option value="Basic CV" data-price="2000">
+                        Basic CV — ₦2,000
+                    </option>
+                    
+                    <option value="Professional CV" data-price="3500">
+                        Professional CV — ₦3,500
+                    </option>
+                    
+                    <option value="Career Package" data-price="7000">
+                        Career Package — ₦7,000
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PERSONAL INFORMATION -->
+
+            <div class="form-section">
+
+                <h2>
+                    2. Personal information
+                </h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="full-name">
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="full_name"
+                            placeholder="e.g. Daniel Oshioke"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            WhatsApp / Phone
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="08012345678"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="e.g. Abuja, Nigeria"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="form-section">
+
+                <h2>
+                    3. Education
+                </h2>
+
+                <label for="education">
+                    Education history
+                </label>
+
+                <textarea
+                    id="education"
+                    name="education"
+                    rows="5"
+                    placeholder="School, course/degree, graduation year..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="form-section">
+
+                <h2>
+                    4. Work experience
+                </h2>
+
+                <label for="experience">
+                    Work experience
+                </label>
+
+                <textarea
+                    id="experience"
+                    name="experience"
+                    rows="6"
+                    placeholder="Company, position, responsibilities, dates..."
+                ></textarea>
+
+                <small>
+                    Don't worry if you don't have work experience.
+                    You can leave this blank.
+                </small>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="form-section">
+
+                <h2>
+                    5. Skills
+                </h2>
+
+                <label for="skills">
+                    Your skills
+                </label>
+
+                <textarea
+                    id="skills"
+                    name="skills"
+                    rows="4"
+                    placeholder="e.g. Microsoft Office, Python, Communication, Teamwork..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- ADDITIONAL INFORMATION -->
+
+            <div class="form-section">
+
+                <h2>
+                    6. Anything else?
+                </h2>
+
+                <label for="additional">
+                    Additional information
+                </label>
+
+                <textarea
+                    id="additional"
+                    name="additional"
+                    rows="5"
+                    placeholder="Tell us anything else you want included in your CV..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                Submit My CV Request
+            </button>
+
+
+            <div id="form-message"></div>
+
+<div id="order-success" class="order-success" style="display: none;">
+
+    <div class="success-icon">✓</div>
+
+    <h2>Order Received!</h2>
+
+    <p>
+        Thank you for choosing CVPro Nigeria.
+        We've received your CV request.
+    </p>
+
+    <div class="success-details">
+
+        <div>
+            <span>Order Reference</span>
+            <strong id="success-reference"></strong>
+        </div>
+
+        <div>
+            <span>Package</span>
+            <strong id="success-plan"></strong>
+        </div>
+
+        <div>
+            <span>Price</span>
+            <strong id="success-price"></strong>
+        </div>
+
+        <div>
+            <span>Order Status</span>
+            <strong>Pending</strong>
+        </div>
+
+
+    </div>
+
+    <p class="success-next">
+        We'll review your information and contact you
+        through WhatsApp to continue your CV preparation.
+    </p>
+
+
+    <a
+    href="#"
+    target="_blank"
+    id="success-whatsapp"
+    class="success-whatsapp"
+    >
+    Contact CVPro Nigeria
+</a>
+
+</div>
+
+        </form>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CVPro Nigeria. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

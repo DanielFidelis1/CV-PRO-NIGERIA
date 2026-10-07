@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Dashboard - CVPro Nigeria</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div class="logo">
+            CVPro<span>Nigeria</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="order.html">
+                New Order
+            </a>
+
+            <a href="track-order.html">
+                Track Order
+            </a>
+
+            <button
+                type="button"
+                id="customer-logout"
+                class="nav-button"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="customer-dashboard">
+
+        <div class="customer-dashboard-header">
+
+            <p class="section-small">
+                MY ACCOUNT
+            </p>
+
+            <h1>
+                Welcome to CVPro Nigeria
+            </h1>
+
+            <p id="customer-welcome">
+                Loading your account...
+            </p>
+
+        </div>
+
+
+        <section class="customer-orders">
+
+                    </section>
+
+
+        <!-- ================================
+             MY CV
+        ================================= -->
+
+        <section class="customer-cv">
+
+            <div class="customer-orders-header">
+
+                <div>
+                    <p class="section-small">
+                        MY CV
+                    </p>
+
+                    <h2>
+                        Your CV
+                    </h2>
+                </div>
+
+                <a
+                    href="order.html"
+                    class="submit-button"
+                >
+                    Create New CV
+                </a>
+
+            </div>
+
+
+            <div id="customer-cv-container">
+
+                <p class="customer-loading">
+                    Loading your CV...
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 CVPro Nigeria. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

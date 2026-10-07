@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard - CVPro Nigeria</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            CVPro<span>Nigeria</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Website
+            </a>
+
+            <button
+                id="logout-button"
+                class="nav-button"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-page">
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <p class="section-small">
+                    ADMIN DASHBOARD
+                </p>
+
+                <h1>
+                    Welcome back 👋
+                </h1>
+
+                <p>
+                    Manage your CV orders from here.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <p>
+                    Total Orders
+                </p>
+
+                <h2 id="total-orders">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p>
+                    Pending
+                </p>
+
+                <h2 id="pending-orders">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p>
+                    In Progress
+                </p>
+
+                <h2 id="progress-orders">
+                    0
+                </h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <p>
+                    Completed
+                </p>
+
+                <h2 id="completed-orders">
+                    0
+                </h2>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section class="orders-section">
+
+            <div class="orders-heading">
+
+                <div>
+
+                    <div class="orders-header">
+
+    <div>
+        <h2>Customer Orders</h2>
+        <p>Manage and track all CV requests.</p>
+    </div>
+
+    <div class="orders-actions">
+
+        <input
+            type="text"
+            id="order-search"
+            placeholder="Search orders..."
+        >
+
+        <button
+            type="button"
+            id="refresh-orders"
+        >
+            Refresh
+        </button>
+
+    </div>
+
+</div>
+
+<div id="orders-container"></div>
+
+                    <p>
+                        Manage your customer requests.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="orders-container"
+                class="orders-container"
+            >
+
+                <p class="loading">
+                    Loading orders...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- SUPABASE -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

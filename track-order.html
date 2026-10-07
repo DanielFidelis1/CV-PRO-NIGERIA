@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Track Your Order - CVPro Nigeria</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            CVPro<span>Nigeria</span>
+        </div>
+
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="order.html">
+                Get Started
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- TRACK ORDER -->
+
+    <main class="track-page">
+
+        <div class="track-header">
+
+            <p class="section-small">
+                ORDER TRACKING
+            </p>
+
+            <h1>
+                Track your CV request.
+            </h1>
+
+            <p>
+                Enter your order reference below
+                to check the current status of your CV.
+            </p>
+
+        </div>
+
+
+        <div class="track-card">
+
+            <label for="order-reference">
+                Order Reference
+            </label>
+
+            <input
+                type="text"
+                id="order-reference"
+                placeholder="e.g. CVP-20261007-4821"
+            >
+
+            <button
+                type="button"
+                id="track-button"
+                class="submit-button"
+            >
+                Track My Order
+            </button>
+
+            <div id="track-message"></div>
+
+            <div
+                id="tracking-result"
+                class="tracking-result"
+                style="display: none;"
+            >
+
+                <h2>
+                    Order Status
+                </h2>
+
+                <div class="tracking-status">
+
+    <div id="status-icon" class="status-icon">
+        1
+    </div>
+
+    <h3 id="tracking-status">
+        Pending
+    </h3>
+
+    <p id="tracking-description">
+        Your order has been received.
+    </p>
+
+</div>
+
+
+<!-- ORDER PROGRESS -->
+
+<div class="order-progress">
+
+    <div
+        class="progress-step active"
+        id="progress-step-1"
+    >
+
+        <div class="progress-circle">
+            1
+        </div>
+
+        <span>
+            Order Received
+        </span>
+
+    </div>
+
+
+    <div class="progress-line"></div>
+
+
+    <div
+        class="progress-step"
+        id="progress-step-2"
+    >
+
+        <div class="progress-circle">
+            2
+        </div>
+
+        <span>
+            CV Being Prepared
+        </span>
+
+    </div>
+
+
+    <div class="progress-line"></div>
+
+
+    <div
+        class="progress-step"
+        id="progress-step-3"
+    >
+
+        <div class="progress-circle">
+            3
+        </div>
+
+        <span>
+            CV Completed
+        </span>
+
+    </div>
+
+</div>
+
+
+                <div class="tracking-details">
+
+                    <div>
+                        <span>Order Reference</span>
+                        <strong id="result-reference"></strong>
+                    </div>
+
+                    <div>
+                        <span>Package</span>
+                        <strong id="result-plan"></strong>
+                    </div>
+
+                    <div>
+                        <span>Status</span>
+                        <strong id="result-status"></strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 CVPro Nigeria. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CV Builder - CVPro Nigeria</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f3f5f8;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+        }
+
+
+        /* ========================================
+           BUILDER
+        ======================================== */
+
+        .cv-builder-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 30px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #111827;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .builder-header {
+            margin-bottom: 25px;
+        }
+
+        .builder-header h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .builder-header p {
+            margin: 0;
+            color: #666;
+        }
+
+
+        .builder-grid {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+
+        /* ========================================
+           FORM
+        ======================================== */
+
+        .builder-form {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .builder-form h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #d9dde5;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #111827;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+
+        .save-cv-button,
+        .download-cv-button {
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .save-cv-button {
+            background: #111827;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .download-cv-button {
+            background: #16803c;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .save-cv-button:hover {
+            background: #000;
+        }
+
+        .download-cv-button:hover {
+            background: #126b32;
+        }
+
+        .save-cv-button:disabled,
+        .download-cv-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .save-message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+        /* ========================================
+           PREVIEW AREA
+        ======================================== */
+
+        .preview-container {
+            overflow-x: auto;
+            padding-bottom: 30px;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .preview-header h2 {
+            margin: 0;
+        }
+
+
+        /* ========================================
+           A4 CV
+        ======================================== */
+
+        .cv-paper {
+            width: 794px;
+            min-height: 1123px;
+            margin: auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: grid;
+            grid-template-columns: 245px 1fr;
+        }
+
+
+        /* ========================================
+           LEFT COLUMN
+        ======================================== */
+
+        .cv-sidebar {
+            background: #111827;
+            color: white;
+            padding: 35px 25px;
+        }
+
+        .cv-sidebar-name {
+            font-size: 27px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .cv-sidebar-title {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0 0 10px;
+            padding-bottom: 7px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .sidebar-section p {
+            margin: 0;
+            font-size: 12px;
+            line-height: 1.7;
+            white-space: pre-line;
+            color: #e5e7eb;
+        }
+
+
+        /* ========================================
+           RIGHT COLUMN
+        ======================================== */
+
+        .cv-main {
+            padding: 40px 35px;
+        }
+
+        .main-section {
+            margin-bottom: 28px;
+        }
+
+        .main-section h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin: 0 0 12px;
+            color: #111827;
+            border-bottom: 2px solid #111827;
+            padding-bottom: 6px;
+        }
+
+        .main-section p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-line;
+            color: #333;
+        }
+
+        .cv-plan-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: #111827;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+        /* ========================================
+           PRINT
+        ======================================== */
+
+        @media print {
+
+            body {
+                background: white;
+            }
+
+            .builder-form,
+            .builder-header,
+            .back-button,
+            .preview-header,
+            .save-message {
+                display: none !important;
+            }
+
+            .cv-builder-container {
+                padding: 0;
+                margin: 0;
+            }
+
+            .builder-grid {
+                display: block;
+            }
+
+            .cv-paper {
+                box-shadow: none;
+                margin: 0;
+            }
+
+        }
+
+
+        /* ========================================
+           MOBILE
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            .builder-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-paper {
+                transform-origin: top left;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .cv-builder-container {
+                padding: 15px;
+            }
+
+            .cv-paper {
+                width: 794px;
+            }
+
+            .preview-container {
+                overflow-x: auto;
+            }
+
+        }
+
+        .template-section {
+    margin-bottom: 25px;
+}
+
+.template-section > label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.template-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.template-option {
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    border: 1px solid #d9dde5;
+    border-radius: 10px;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.template-option strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.template-option span {
+    display: block;
+    color: #666;
+    font-size: 12px;
+}
+
+.template-option small {
+    display: block;
+    margin-top: 7px;
+    color: #999;
+}
+
+.template-option.active {
+    border: 2px solid #111827;
+    background: #f8fafc;
+}
+
+.template-option.locked {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.template-option.unlocked:hover {
+    border-color: #111827;
+}
+
+/* ========================================
+   MODERN EXECUTIVE TEMPLATE
+======================================== */
+
+.cv-paper.modern-template {
+    display: block;
+    background: #ffffff;
+}
+
+.cv-paper.modern-template .cv-sidebar {
+    background: #ffffff;
+    color: #111827;
+    padding: 38px 40px 20px;
+    border-bottom: 4px solid #111827;
+}
+
+.cv-paper.modern-template .cv-sidebar-name {
+    font-size: 34px;
+    color: #111827;
+    margin-bottom: 5px;
+}
+
+.cv-paper.modern-template .cv-sidebar-title {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.cv-paper.modern-template .sidebar-section {
+    margin-bottom: 15px;
+}
+
+.cv-paper.modern-template .sidebar-section h3 {
+    display: none;
+}
+
+.cv-paper.modern-template .sidebar-section p {
+    color: #555;
+    font-size: 12px;
+}
+
+.cv-paper.modern-template .cv-main {
+    padding: 30px 40px 40px;
+}
+
+.cv-paper.modern-template .main-section {
+    margin-bottom: 25px;
+}
+
+.cv-paper.modern-template .main-section h2 {
+    color: #111827;
+    font-size: 15px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.cv-paper.modern-template .main-section p {
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* ========================================
+   MODERN TEMPLATE - PROFESSIONAL LAYOUT
+======================================== */
+
+.cv-paper.modern-template {
+    background: #ffffff;
+    color: #1f2937;
+    display: block;
+}
+
+.cv-paper.modern-template .cv-sidebar {
+    background: #ffffff;
+    color: #111827;
+    padding: 38px 42px 25px;
+    border-bottom: 3px solid #111827;
+}
+
+.cv-paper.modern-template .cv-name {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.cv-paper.modern-template .cv-title {
+    color: #4b5563;
+    font-size: 15px;
+    margin-top: 6px;
+}
+
+.cv-paper.modern-template .cv-contact {
+    margin-top: 16px;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.cv-paper.modern-template .cv-main {
+    padding: 30px 42px 40px;
+}
+
+.cv-paper.modern-template .cv-section {
+    margin-bottom: 25px;
+}
+
+.cv-paper.modern-template .cv-section h3 {
+    color: #111827;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #111827;
+    padding-bottom: 7px;
+    margin-bottom: 12px;
+}
+
+.cv-paper.modern-template .cv-section p,
+.cv-paper.modern-template .cv-section div {
+    color: #374151;
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+/* ========================================
+   PREMIUM EXECUTIVE TEMPLATE
+======================================== */
+
+.cv-paper.premium-template {
+    display: block;
+    background: #ffffff;
+}
+
+.cv-paper.premium-template .cv-sidebar {
+    background: #111827;
+    color: white;
+    padding: 42px 45px 30px;
+    border-bottom: 5px solid #b08d57;
+}
+
+.cv-paper.premium-template .cv-sidebar-name {
+    font-size: 36px;
+    letter-spacing: 0.5px;
+    margin-bottom: 7px;
+}
+
+.cv-paper.premium-template .cv-sidebar-title {
+    color: #d1d5db;
+    font-size: 15px;
+    margin-bottom: 18px;
+}
+
+.cv-paper.premium-template .sidebar-section {
+    margin-bottom: 15px;
+}
+
+.cv-paper.premium-template .sidebar-section h3 {
+    display: none;
+}
+
+.cv-paper.premium-template .sidebar-section p {
+    color: #d1d5db;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.cv-paper.premium-template .cv-main {
+    padding: 35px 45px 45px;
+}
+
+.cv-paper.premium-template .main-section {
+    margin-bottom: 30px;
+}
+
+.cv-paper.premium-template .main-section h2 {
+    color: #111827;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid #b08d57;
+    padding-bottom: 8px;
+}
+
+.cv-paper.premium-template .main-section p {
+    font-size: 13px;
+    line-height: 1.85;
+    color: #333;
+}
+/* ========================================
+   PREMIUM TEMPLATE - EXECUTIVE LAYOUT
+======================================== */
+
+.cv-paper.premium-template {
+    background: #ffffff;
+    color: #1f2937;
+    display: block;
+}
+
+.cv-paper.premium-template .cv-sidebar {
+    background: #111827;
+    color: #ffffff;
+    padding: 42px 45px 30px;
+    border-bottom: 5px solid #b08d57;
+}
+
+.cv-paper.premium-template .cv-name {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.cv-paper.premium-template .cv-title {
+    color: #d1d5db;
+    font-size: 15px;
+    margin-top: 7px;
+    font-weight: 500;
+}
+
+.cv-paper.premium-template .cv-contact {
+    margin-top: 18px;
+    color: #d1d5db;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.cv-paper.premium-template .cv-main {
+    padding: 32px 45px 45px;
+}
+
+.cv-paper.premium-template .cv-section {
+    margin-bottom: 28px;
+}
+
+.cv-paper.premium-template .cv-section h3 {
+    color: #111827;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    border-bottom: 2px solid #b08d57;
+    padding-bottom: 8px;
+    margin-bottom: 13px;
+}
+
+.cv-paper.premium-template .cv-section p,
+.cv-paper.premium-template .cv-section div {
+    color: #374151;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.cv-paper.premium-template .cv-section strong {
+    color: #111827;
+}
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="cv-builder-container">
+
+
+    <a
+        href="dashboard.html"
+        class="back-button"
+    >
+        ← Back to Dashboard
+    </a>
+
+
+    <div class="builder-header">
+
+    <h1>
+        CV Builder
+    </h1>
+
+    <p>
+        Create a professional CV for your customer.
+    </p>
+
+    <div
+        id="cv-plan-badge"
+        class="cv-plan-badge"
+    >
+        Loading plan...
+    </div>
+
+</div>
+
+
+    <div class="builder-grid">
+
+
+        <!-- ========================================
+             FORM
+        ========================================= -->
+
+        <div class="builder-form">
+
+            <h2>
+                CV Information
+            </h2>
+
+
+            <div class="template-section">
+
+    <label>
+        CV Template
+    </label>
+
+    <div
+        id="template-options"
+        class="template-options"
+    >
+
+        <button
+            type="button"
+            class="template-option active"
+            data-template="classic"
+        >
+            <strong>Classic Professional</strong>
+            <span>Included with all plans</span>
+        </button>
+
+
+        <button
+            type="button"
+            class="template-option"
+            data-template="modern"
+            id="modern-template"
+        >
+            <strong>Modern Executive</strong>
+            <span>Professional CV and above</span>
+            <small>🔒 Locked</small>
+        </button>
+
+
+        <button
+            type="button"
+            class="template-option"
+            data-template="premium"
+            id="premium-template"
+        >
+            <strong>Premium Executive</strong>
+            <span>Career Package</span>
+            <small>🔒 Locked</small>
+        </button>
+
+    </div>
+
+</div>
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="cv-name"
+                    placeholder="Customer full name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Professional Title
+                </label>
+
+                <input
+                    type="text"
+                    id="cv-title"
+                    placeholder="e.g. Computer Engineer"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Professional Summary
+                </label>
+
+                <textarea
+                    id="cv-summary"
+                    placeholder="Write a strong professional summary..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Work Experience
+                </label>
+
+                <textarea
+                    id="cv-experience"
+                    placeholder="Company, position, responsibilities and achievements..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Education
+                </label>
+
+                <textarea
+                    id="cv-education"
+                    placeholder="School, qualification, course and year..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Skills
+                </label>
+
+                <textarea
+                    id="cv-skills"
+                    placeholder="Programming, communication, leadership..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Certifications
+                </label>
+
+                <textarea
+                    id="cv-certifications"
+                    placeholder="Certifications and professional training..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Projects
+                </label>
+
+                <textarea
+                    id="cv-projects"
+                    placeholder="Projects, achievements or major work..."
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    References
+                </label>
+
+                <textarea
+                    id="cv-references"
+                    placeholder="References or Available upon request..."
+                ></textarea>
+
+            </div>
+
+            <button
+            id="improve-cv-button"
+            class="improve-cv-button"
+            >
+            ✨ Improve CV Content
+        </button>
+
+            <button
+                id="save-cv-button"
+                class="save-cv-button"
+            >
+                Save CV
+            </button>
+
+
+            <button
+                id="download-cv-button"
+                class="download-cv-button"
+            >
+                Download PDF
+            </button>
+
+
+            <div
+                id="save-message"
+                class="save-message"
+            ></div>
+
+        </div>
+
+
+        <!-- ========================================
+             PREVIEW
+        ========================================= -->
+
+        <div class="preview-container">
+
+            <div class="preview-header">
+
+                <h2>
+                    CV Preview
+                </h2>
+
+            </div>
+
+
+            <div
+                id="cv-paper"
+                class="cv-paper"
+            >
+
+
+                <!-- LEFT SIDEBAR -->
+
+                <div class="cv-sidebar">
+
+
+                    <div
+                        class="cv-sidebar-name"
+                        id="preview-name"
+                    >
+                        Your Name
+                    </div>
+
+
+                    <div
+                        class="cv-sidebar-title"
+                        id="preview-title"
+                    >
+                        Professional Title
+                    </div>
+
+
+                    <div class="sidebar-section">
+
+                        <h3>
+                            Contact
+                        </h3>
+
+                        <p id="preview-contact">
+                            Contact information
+                        </p>
+
+                    </div>
+
+
+                    <div class="sidebar-section">
+
+                        <h3>
+                            Skills
+                        </h3>
+
+                        <p id="preview-skills">
+                            Your skills will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="sidebar-section">
+
+                        <h3>
+                            Certifications
+                        </h3>
+
+                        <p id="preview-certifications">
+                            Your certifications will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="sidebar-section">
+
+                        <h3>
+                            References
+                        </h3>
+
+                        <p id="preview-references">
+                            Available upon request.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT SIDE -->
+
+                <div class="cv-main">
+
+
+                    <div class="main-section">
+
+                        <h2>
+                            Professional Summary
+                        </h2>
+
+                        <p id="preview-summary">
+                            Your professional summary will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="main-section">
+
+                        <h2>
+                            Work Experience
+                        </h2>
+
+                        <p id="preview-experience">
+                            Your work experience will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="main-section">
+
+                        <h2>
+                            Education
+                        </h2>
+
+                        <p id="preview-education">
+                            Your education will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="main-section">
+
+                        <h2>
+                            Projects
+                        </h2>
+
+                        <p id="preview-projects">
+                            Your projects will appear here.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ========================================
+     SUPABASE
+========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="js/app.js"></script>
+
+
+<!-- ========================================
+     CV BUILDER JAVASCRIPT
+========================================= -->
+
+<script>
+
+const orderId =
+    new URLSearchParams(
+        window.location.search
+    ).get("order");
+
+    let customerPlan = "";
+    let selectedTemplate = "classic";
+
+// ========================================
+// LOAD ORDER
+// ========================================
+
+async function loadCVBuilder() {
+
+    if (!orderId) {
+
+        showMessage(
+            "No order was selected.",
+            "#d62828"
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const {
+            data: {
+                user
+            },
+            error: authError
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        if (authError || !user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const {
+            data: order,
+            error
+        } =
+            await supabaseClient
+
+                .from("orders")
+
+                .select("*")
+
+                .eq("id", orderId)
+
+                .single();
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (!order) {
+            throw new Error(
+                "Order not found."
+            );
+        }
+
+        // ========================================
+// CUSTOMER PLAN
+// ========================================
+
+customerPlan =
+    order.plan || "Basic CV";
+
+
+const planBadge =
+    document.getElementById(
+        "cv-plan-badge"
+    );
+
+
+if (customerPlan === "Basic CV") {
+
+    planBadge.textContent =
+        "GOOD — Basic CV";
+
+    planBadge.style.background =
+        "#166534";
+
+}
+
+else if (
+    customerPlan === "Professional CV"
+) {
+
+    planBadge.textContent =
+        "GREAT — Professional CV";
+
+    planBadge.style.background =
+        "#1d4ed8";
+
+}
+
+else if (
+    customerPlan === "Career Package"
+) {
+
+    planBadge.textContent =
+        "PERFECT — Career Package";
+
+    planBadge.style.background =
+        "#7c3aed";
+
+}
+
+else {
+
+    planBadge.textContent =
+        customerPlan;
+
+}
+
+
+        document.getElementById(
+            "cv-name"
+        ).value =
+            order.full_name || "";
+
+
+        document.getElementById(
+            "cv-experience"
+        ).value =
+            order.experience || "";
+
+
+        document.getElementById(
+            "cv-education"
+        ).value =
+            order.education || "";
+
+
+        document.getElementById(
+            "cv-skills"
+        ).value =
+            order.skills || "";
+
+
+        document.getElementById(
+            "preview-contact"
+        ).textContent =
+            [
+                order.email,
+                order.phone,
+                order.location
+            ]
+            .filter(Boolean)
+            .join("\n");
+
+
+        updateCVPreview();
+        
+
+
+
+        // ========================================
+        // LOAD EXISTING CV IF AVAILABLE
+        // ========================================
+
+        const {
+            data: existingCV
+        } =
+            await supabaseClient
+
+                .from("cv_documents")
+
+                .select("*")
+
+                .eq("order_id", orderId)
+
+                .maybeSingle();
+
+
+        if (existingCV) {
+
+            document.getElementById(
+                "cv-title"
+            ).value =
+                existingCV.professional_title || "";
+
+
+            document.getElementById(
+                "cv-summary"
+            ).value =
+                existingCV.summary || "";
+
+
+            document.getElementById(
+                "cv-experience"
+            ).value =
+                existingCV.experience ||
+                order.experience ||
+                "";
+
+
+            document.getElementById(
+                "cv-education"
+            ).value =
+                existingCV.education ||
+                order.education ||
+                "";
+
+
+            document.getElementById(
+                "cv-skills"
+            ).value =
+                existingCV.skills ||
+                order.skills ||
+                "";
+
+
+            document.getElementById(
+                "cv-certifications"
+            ).value =
+                existingCV.certifications || "";
+
+
+            document.getElementById(
+                "cv-projects"
+            ).value =
+                existingCV.projects || "";
+
+
+            document.getElementById(
+                "cv-references"
+            ).value =
+                existingCV.reference_info || "";
+
+            if (existingCV.template) {
+                selectedTemplate = existingCV.template;
+            }
+        }
+
+
+        updateCVPreview();
+        setupTemplateAccess();
+        applyTemplate(selectedTemplate);
+
+
+    } catch (error) {
+
+        console.error(
+            "CV Builder error:",
+            error
+        );
+
+        showMessage(
+            "Unable to load this order.",
+            "#d62828"
+        );
+
+    }
+
+}
+
+
+// ========================================
+// UPDATE PREVIEW
+// ========================================
+
+function updateCVPreview() {
+
+    document.getElementById(
+        "preview-name"
+    ).textContent =
+        document.getElementById(
+            "cv-name"
+        ).value ||
+        "Your Name";
+
+
+    document.getElementById(
+        "preview-title"
+    ).textContent =
+        document.getElementById(
+            "cv-title"
+        ).value ||
+        "Professional Title";
+
+
+    document.getElementById(
+        "preview-summary"
+    ).textContent =
+        document.getElementById(
+            "cv-summary"
+        ).value ||
+        "Your professional summary will appear here.";
+
+
+    document.getElementById(
+        "preview-experience"
+    ).textContent =
+        document.getElementById(
+            "cv-experience"
+        ).value ||
+        "Your work experience will appear here.";
+
+
+    document.getElementById(
+        "preview-education"
+    ).textContent =
+        document.getElementById(
+            "cv-education"
+        ).value ||
+        "Your education will appear here.";
+
+
+    document.getElementById(
+        "preview-skills"
+    ).textContent =
+        document.getElementById(
+            "cv-skills"
+        ).value ||
+        "Your skills will appear here.";
+
+
+    document.getElementById(
+        "preview-certifications"
+    ).textContent =
+        document.getElementById(
+            "cv-certifications"
+        ).value ||
+        "Your certifications will appear here.";
+
+
+    document.getElementById(
+        "preview-projects"
+    ).textContent =
+        document.getElementById(
+            "cv-projects"
+        ).value ||
+        "Your projects will appear here.";
+
+
+    document.getElementById(
+        "preview-references"
+    ).textContent =
+        document.getElementById(
+            "cv-references"
+        ).value ||
+        "Available upon request.";
+
+}
+
+
+// ========================================
+// LIVE PREVIEW
+// ========================================
+
+document.querySelectorAll(
+    "#cv-name, #cv-title, #cv-summary, #cv-experience, #cv-education, #cv-skills, #cv-certifications, #cv-projects, #cv-references"
+).forEach(function (input) {
+
+    input.addEventListener(
+        "input",
+        updateCVPreview
+    );
+
+});
+
+
+// ========================================
+// SAVE CV
+// ========================================
+
+document.getElementById(
+    "save-cv-button"
+).addEventListener(
+    "click",
+    async function () {
+
+        const button = this;
+
+        button.disabled = true;
+
+        button.textContent =
+            "Saving CV...";
+
+
+        try {
+
+            const {
+                data: {
+                    user
+                },
+                error: authError
+            } =
+                await supabaseClient.auth.getUser();
+
+
+            if (authError || !user) {
+                throw new Error(
+                    "You must be logged in."
+                );
+            }
+
+
+            const {
+                data: order,
+                error: orderError
+            } =
+                await supabaseClient
+
+                    .from("orders")
+
+                    .select(
+                        "id, user_id"
+                    )
+
+                    .eq(
+                        "id",
+                        orderId
+                    )
+
+                    .single();
+
+
+            if (orderError) {
+                throw orderError;
+            }
+
+            console.log("SAVE CV USER:", user);
+            console.log("SAVE CV USER ID:", user.id);
+
+            const cvData = {
+
+                order_id:
+                    order.id,
+
+                user_id: user.id,
+
+                professional_title:
+                    document.getElementById(
+                        "cv-title"
+                    ).value.trim(),
+
+                summary:
+                    document.getElementById(
+                        "cv-summary"
+                    ).value.trim(),
+
+                experience:
+                    document.getElementById(
+                        "cv-experience"
+                    ).value.trim(),
+
+                education:
+                    document.getElementById(
+                        "cv-education"
+                    ).value.trim(),
+
+                skills:
+                    document.getElementById(
+                        "cv-skills"
+                    ).value.trim(),
+
+                certifications:
+                    document.getElementById(
+                        "cv-certifications"
+                    ).value.trim(),
+
+                projects:
+                    document.getElementById(
+                        "cv-projects"
+                    ).value.trim(),
+
+                reference_info:
+                    document.getElementById(
+                        "cv-references"
+                    ).value.trim(),
+
+                template: selectedTemplate,
+
+                updated_at:
+                    new Date().toISOString()
+
+            };
+
+
+            const {
+                data: existingCV
+            } =
+                await supabaseClient
+
+                    .from("cv_documents")
+
+                    .select("id")
+
+                    .eq(
+                        "order_id",
+                        orderId
+                    )
+
+                    .maybeSingle();
+
+
+            let result;
+
+
+            if (existingCV) {
+
+                result =
+                    await supabaseClient
+
+                        .from("cv_documents")
+
+                        .update(cvData)
+
+                        .eq(
+                            "id",
+                            existingCV.id
+                        );
+
+            } else {
+
+                result =
+                    await supabaseClient
+
+                        .from("cv_documents")
+
+                        .insert([
+                            cvData
+                        ]);
+
+            }
+
+
+            if (result.error) {
+                throw result.error;
+            }
+
+
+            showMessage(
+                "CV saved successfully!",
+                "#16803c"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Save CV error:",
+                error
+            );
+
+            showMessage(
+                error.message ||
+                "Unable to save CV.",
+                "#d62828"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Save CV";
+
+        }
+
+    }
+);
+
+
+// ========================================
+// DOWNLOAD PDF
+// ========================================
+
+document.getElementById(
+    "download-cv-button"
+).addEventListener(
+    "click",
+    async function () {
+
+        const button = this;
+
+        button.disabled = true;
+
+        button.textContent =
+            "Creating PDF...";
+
+
+        try {
+
+            updateCVPreview();
+
+
+            const cvPaper =
+                document.getElementById(
+                    "cv-paper"
+                );
+
+
+            const canvas =
+                await html2canvas(
+                    cvPaper,
+                    {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: "#ffffff"
+                    }
+                );
+
+
+            const imageData =
+                canvas.toDataURL(
+                    "image/png"
+                );
+
+
+            const {
+                jsPDF
+            } =
+                window.jspdf;
+
+
+            const pdf =
+                new jsPDF(
+                    "p",
+                    "mm",
+                    "a4"
+                );
+
+
+            const pageWidth =
+                210;
+
+            const pageHeight =
+                297;
+
+
+            const imageWidth =
+                pageWidth;
+
+            const imageHeight =
+                (
+                    canvas.height *
+                    imageWidth
+                ) /
+                canvas.width;
+
+
+            let heightLeft =
+                imageHeight;
+
+            let position = 0;
+
+
+            pdf.addImage(
+                imageData,
+                "PNG",
+                0,
+                position,
+                imageWidth,
+                imageHeight
+            );
+
+
+            heightLeft -=
+                pageHeight;
+
+
+            while (
+                heightLeft > 0
+            ) {
+
+                position =
+                    heightLeft -
+                    imageHeight;
+
+                pdf.addPage();
+
+                pdf.addImage(
+                    imageData,
+                    "PNG",
+                    0,
+                    position,
+                    imageWidth,
+                    imageHeight
+                );
+
+                heightLeft -=
+                    pageHeight;
+
+            }
+
+
+            const name =
+                document.getElementById(
+                    "cv-name"
+                ).value.trim();
+
+
+            const safeName =
+                name
+                    ? name.replace(
+                        /[^a-z0-9]/gi,
+                        "_"
+                    )
+                    : "CV";
+
+
+            pdf.save(
+                `${safeName}_CV.pdf`
+            );
+
+
+            showMessage(
+                "PDF downloaded successfully!",
+                "#16803c"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "PDF generation error:",
+                error
+            );
+
+            showMessage(
+                "Unable to create PDF.",
+                "#d62828"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Download PDF";
+
+        }
+
+    }
+);
+
+// ========================================
+// MESSAGE
+// ========================================
+
+function showMessage(
+    message,
+    color
+) {
+
+    const element =
+        document.getElementById(
+            "save-message"
+        );
+
+    element.textContent =
+        message;
+
+    element.style.color =
+        color;
+
+}
+
+// ========================================
+// PLAN-BASED CV IMPROVEMENT
+// ========================================
+
+document.getElementById(
+    "improve-cv-button"
+).addEventListener(
+    "click",
+    function () {
+
+        const button = this;
+
+        button.disabled = true;
+
+        button.textContent =
+            "Improving CV...";
+
+
+        try {
+
+            const title =
+                document.getElementById(
+                    "cv-title"
+                ).value.trim();
+
+            const experience =
+                document.getElementById(
+                    "cv-experience"
+                ).value.trim();
+
+            const education =
+                document.getElementById(
+                    "cv-education"
+                ).value.trim();
+
+            const skills =
+                document.getElementById(
+                    "cv-skills"
+                ).value.trim();
+
+            const projects =
+                document.getElementById(
+                    "cv-projects"
+                ).value.trim();
+
+            const summary =
+                document.getElementById(
+                    "cv-summary"
+                ).value.trim();
+
+
+            // ========================================
+            // BASIC — GOOD
+            // ========================================
+
+            if (
+                customerPlan === "Basic CV"
+            ) {
+
+                improveBasicCV(
+                    title,
+                    experience,
+                    education,
+                    skills,
+                    summary
+                );
+
+            }
+
+
+            // ========================================
+            // PROFESSIONAL — GREAT
+            // ========================================
+
+            else if (
+                customerPlan === "Professional CV"
+            ) {
+
+                improveProfessionalCV(
+                    title,
+                    experience,
+                    education,
+                    skills,
+                    summary
+                );
+
+            }
+
+
+            // ========================================
+            // CAREER — PERFECT
+            // ========================================
+
+            else if (
+                customerPlan === "Career Package"
+            ) {
+
+                improveCareerCV(
+                    title,
+                    experience,
+                    education,
+                    skills,
+                    summary,
+                    projects
+                );
+
+            }
+
+
+            else {
+
+                improveBasicCV(
+                    title,
+                    experience,
+                    education,
+                    skills,
+                    summary
+                );
+
+            }
+
+
+            updateCVPreview();
+
+
+            showMessage(
+                getPlanImprovementMessage(),
+                "#6d28d9"
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "CV improvement error:",
+                error
+            );
+
+            showMessage(
+                "Unable to improve CV content.",
+                "#d62828"
+            );
+
+        } finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "✨ Improve CV Content";
+
+        }
+
+    }
+);
+
+
+// ========================================
+// BASIC CV
+// GOOD
+// ========================================
+
+function improveBasicCV(
+    title,
+    experience,
+    education,
+    skills,
+    summary
+) {
+
+    // Professional title
+
+    if (!title) {
+
+        document.getElementById(
+            "cv-title"
+        ).value =
+            "Professional";
+
+    }
+
+
+    // Summary
+
+    if (!summary) {
+
+        let generatedSummary =
+            "Motivated and detail-oriented professional";
+
+        if (title) {
+
+            generatedSummary +=
+                ` with a background in ${title}`;
+
+        }
+
+        generatedSummary +=
+            ". Demonstrates strong communication, problem-solving, teamwork and a commitment to continuous learning and professional development.";
+
+        document.getElementById(
+            "cv-summary"
+        ).value =
+            generatedSummary;
+
+    }
+
+
+    // Experience formatting
+
+    if (experience) {
+
+        document.getElementById(
+            "cv-experience"
+        ).value =
+            cleanExperience(
+                experience
+            );
+
+    }
+
+
+    // Education formatting
+
+    if (education) {
+
+        document.getElementById(
+            "cv-education"
+        ).value =
+            cleanText(
+                education
+            );
+
+    }
+
+
+    // Skills formatting
+
+    if (skills) {
+
+        document.getElementById(
+            "cv-skills"
+        ).value =
+            formatSkills(
+                skills
+            );
+
+    }
+
+}
+
+
+// ========================================
+// PROFESSIONAL CV
+// GREAT
+// ========================================
+
+function improveProfessionalCV(
+    title,
+    experience,
+    education,
+    skills,
+    summary
+) {
+
+    if (!title) {
+
+        document.getElementById(
+            "cv-title"
+        ).value =
+            "Professional Specialist";
+
+    }
+
+
+    let professionalSummary =
+        summary;
+
+
+    if (!professionalSummary) {
+
+        professionalSummary =
+            "Results-oriented and motivated professional";
+
+        if (title) {
+
+            professionalSummary +=
+                ` with experience and developing expertise in ${title}`;
+
+        }
+
+        professionalSummary +=
+            ". Demonstrates strong problem-solving, communication and teamwork abilities, with a proven willingness to learn, adapt and contribute effectively to organizational goals.";
+
+    }
+
+
+    document.getElementById(
+        "cv-summary"
+    ).value =
+        professionalSummary;
+
+
+    if (experience) {
+
+        document.getElementById(
+            "cv-experience"
+        ).value =
+            improveProfessionalExperience(
+                experience
+            );
+
+    }
+
+
+    if (education) {
+
+        document.getElementById(
+            "cv-education"
+        ).value =
+            cleanText(
+                education
+            );
+
+    }
+
+
+    if (skills) {
+
+        document.getElementById(
+            "cv-skills"
+        ).value =
+            formatSkills(
+                skills
+            );
+
+    }
+
+}
+
+
+// ========================================
+// CAREER PACKAGE
+// PERFECT
+// ========================================
+
+function improveCareerCV(
+    title,
+    experience,
+    education,
+    skills,
+    summary,
+    projects
+) {
+
+    if (!title) {
+
+        document.getElementById(
+            "cv-title"
+        ).value =
+            "Results-Driven Professional";
+
+    }
+
+
+    // Advanced summary
+
+    let careerSummary =
+        summary;
+
+
+    if (!careerSummary) {
+
+        careerSummary =
+            "Results-driven and adaptable professional";
+
+        if (title) {
+
+            careerSummary +=
+                ` specializing in ${title}`;
+
+        }
+
+        careerSummary +=
+            ", with practical experience supporting projects, solving technical and operational challenges, and working effectively with teams. Recognized for strong analytical thinking, communication, initiative and the ability to learn quickly in changing environments. Seeking opportunities to apply proven skills while delivering measurable value and continuing professional growth.";
+
+    }
+
+
+    document.getElementById(
+        "cv-summary"
+    ).value =
+        careerSummary;
+
+
+    // Advanced experience
+
+    if (experience) {
+
+        document.getElementById(
+            "cv-experience"
+        ).value =
+            improveCareerExperience(
+                experience
+            );
+
+    }
+
+
+    // Education
+
+    if (education) {
+
+        document.getElementById(
+            "cv-education"
+        ).value =
+            cleanText(
+                education
+            );
+
+    }
+
+
+    // Skills
+
+    if (skills) {
+
+        document.getElementById(
+            "cv-skills"
+        ).value =
+            formatSkills(
+                skills
+            );
+
+    }
+
+
+    // Projects
+
+    if (projects) {
+
+        document.getElementById(
+            "cv-projects"
+        ).value =
+            improveProjects(
+                projects
+            );
+
+    }
+
+}
+
+
+// ========================================
+// BASIC EXPERIENCE CLEANUP
+// ========================================
+
+function cleanExperience(
+    text
+) {
+
+    return text
+        .split("\n")
+        .map(function (line) {
+
+            line =
+                line.trim();
+
+            if (!line) {
+                return "";
+            }
+
+            if (
+                !line.endsWith(".")
+            ) {
+
+                line += ".";
+
+            }
+
+            return line;
+
+        })
+        .join("\n");
+
+}
+
+
+// ========================================
+// PROFESSIONAL EXPERIENCE
+// ========================================
+
+function improveProfessionalExperience(
+    text
+) {
+
+    const lines =
+        text
+            .split("\n")
+            .map(function (line) {
+
+                return line.trim();
+
+            })
+            .filter(Boolean);
+
+
+    return lines
+        .map(function (line) {
+
+            if (
+                line.endsWith(".")
+            ) {
+
+                return line;
+
+            }
+
+            return line + ".";
+
+        })
+        .join("\n");
+
+}
+
+
+// ========================================
+// CAREER EXPERIENCE
+// ========================================
+
+function improveCareerExperience(
+    text
+) {
+
+    const lines =
+        text
+            .split("\n")
+            .map(function (line) {
+
+                return line.trim();
+
+            })
+            .filter(Boolean);
+
+
+    return lines
+        .map(function (line) {
+
+            let improved =
+                line;
+
+
+            const lower =
+                improved.toLowerCase();
+
+
+            if (
+                lower.startsWith("worked")
+            ) {
+
+                improved =
+                    improved.replace(
+                        /^worked/i,
+                        "Contributed to"
+                    );
+
+            }
+
+
+            else if (
+                lower.startsWith("helped")
+            ) {
+
+                improved =
+                    improved.replace(
+                        /^helped/i,
+                        "Supported"
+                    );
+
+            }
+
+
+            else if (
+                lower.startsWith("did")
+            ) {
+
+                improved =
+                    improved.replace(
+                        /^did/i,
+                        "Executed"
+                    );
+
+            }
+
+
+            else if (
+                lower.startsWith("made")
+            ) {
+
+                improved =
+                    improved.replace(
+                        /^made/i,
+                        "Developed"
+                    );
+
+            }
+
+
+            else if (
+                lower.startsWith("used")
+            ) {
+
+                improved =
+                    improved.replace(
+                        /^used/i,
+                        "Utilized"
+                    );
+
+            }
+
+
+            if (
+                !improved.endsWith(".")
+            ) {
+
+                improved += ".";
+
+            }
+
+
+            return improved;
+
+        })
+        .join("\n");
+
+}
+
+
+// ========================================
+// CLEAN TEXT
+// ========================================
+
+function cleanText(
+    text
+) {
+
+    return text
+        .split("\n")
+        .map(function (line) {
+
+            line =
+                line.trim();
+
+            if (!line) {
+                return "";
+            }
+
+            if (
+                !line.endsWith(".")
+            ) {
+
+                line += ".";
+
+            }
+
+            return line;
+
+        })
+        .join("\n");
+
+}
+
+
+// ========================================
+// FORMAT SKILLS
+// ========================================
+
+function formatSkills(
+    text
+) {
+
+    return text
+        .split(/[,;\n]+/)
+        .map(function (skill) {
+
+            return skill.trim();
+
+        })
+        .filter(Boolean)
+        .join("\n");
+
+}
+
+
+// ========================================
+// PROJECT IMPROVEMENT
+// ========================================
+
+function improveProjects(
+    text
+) {
+
+    return text
+        .split("\n")
+        .map(function (line) {
+
+            line =
+                line.trim();
+
+            if (!line) {
+                return "";
+            }
+
+
+            const lower =
+                line.toLowerCase();
+
+
+            if (
+                lower.startsWith("made")
+            ) {
+
+                line =
+                    line.replace(
+                        /^made/i,
+                        "Developed"
+                    );
+
+            }
+
+            else if (
+                lower.startsWith("did")
+            ) {
+
+                line =
+                    line.replace(
+                        /^did/i,
+                        "Completed"
+                    );
+
+            }
+
+            else if (
+                lower.startsWith("worked on")
+            ) {
+
+                line =
+                    line.replace(
+                        /^worked on/i,
+                        "Developed and contributed to"
+                    );
+
+            }
+
+
+            if (
+                !line.endsWith(".")
+            ) {
+
+                line += ".";
+
+            }
+
+
+            return line;
+
+        })
+        .join("\n");
+
+}
+
+
+// ========================================
+// PLAN MESSAGE
+// ========================================
+
+function getPlanImprovementMessage() {
+
+    if (
+        customerPlan === "Basic CV"
+    ) {
+
+        return "Good CV formatting applied.";
+
+    }
+
+
+    if (
+        customerPlan === "Professional CV"
+    ) {
+
+        return "Great — professional CV enhancement applied.";
+
+    }
+
+
+    if (
+        customerPlan === "Career Package"
+    ) {
+
+        return "Perfect — advanced Career Package enhancement applied.";
+
+    }
+
+
+    return "CV content improved successfully.";
+
+}
+// ========================================
+// APPLY CV TEMPLATE
+// ========================================
+
+function applyTemplate(template) {
+    const cvPaper = document.getElementById("cv-paper");
+
+    selectedTemplate = template;
+
+    cvPaper.classList.remove(
+        "modern-template",
+        "premium-template"
+    );
+
+    if (template === "classic") {
+        return;
+    }
+
+    if (template === "modern") {
+        cvPaper.classList.add("modern-template");
+        return;
+    }
+
+    if (template === "premium") {
+        cvPaper.classList.add("premium-template");
+        return;
+    }
+
+
+    // ========================================
+    // CLASSIC
+    // ========================================
+
+    if (
+        template === "classic"
+    ) {
+
+        return;
+
+    }
+
+
+    // ========================================
+    // MODERN
+    // ========================================
+
+    if (
+        template === "modern"
+    ) {
+
+        cvPaper.classList.add(
+            "modern-template"
+        );
+
+        return;
+
+    }
+
+
+    // ========================================
+    // PREMIUM
+    // ========================================
+
+    if (
+        template === "premium"
+    ) {
+
+        cvPaper.classList.add(
+            "premium-template"
+        );
+
+        return;
+
+    }
+
+}
+// ========================================
+// TEMPLATE ACCESS
+// ========================================
+
+function setupTemplateAccess() {
+
+    applyTemplate("classic");
+
+    const modernTemplate =
+        document.getElementById(
+            "modern-template"
+        );
+
+    const premiumTemplate =
+        document.getElementById(
+            "premium-template"
+        );
+
+
+    // ========================================
+    // BASIC PLAN
+    // ========================================
+
+    if (
+        customerPlan === "Basic CV"
+    ) {
+
+        modernTemplate.classList.add(
+            "locked"
+        );
+
+        premiumTemplate.classList.add(
+            "locked"
+        );
+
+        modernTemplate.querySelector(
+            "small"
+        ).textContent =
+            "🔒 Upgrade to Professional CV";
+
+        premiumTemplate.querySelector(
+            "small"
+        ).textContent =
+            "🔒 Upgrade to Career Package";
+
+    }
+
+
+    // ========================================
+    // PROFESSIONAL PLAN
+    // ========================================
+
+    else if (
+        customerPlan === "Professional CV"
+    ) {
+
+        modernTemplate.classList.add(
+            "unlocked"
+        );
+
+        modernTemplate.querySelector(
+            "small"
+        ).textContent =
+            "✓ Included";
+
+
+        premiumTemplate.classList.add(
+            "locked"
+        );
+
+        premiumTemplate.querySelector(
+            "small"
+        ).textContent =
+            "🔒 Upgrade to Career Package";
+
+    }
+
+
+    // ========================================
+    // CAREER PACKAGE
+    // ========================================
+
+    else if (
+        customerPlan === "Career Package"
+    ) {
+
+        modernTemplate.classList.add(
+            "unlocked"
+        );
+
+        premiumTemplate.classList.add(
+            "unlocked"
+        );
+
+        modernTemplate.querySelector(
+            "small"
+        ).textContent =
+            "✓ Included";
+
+        premiumTemplate.querySelector(
+            "small"
+        ).textContent =
+            "✓ Included";
+
+    }
+
+
+    // ========================================
+    // TEMPLATE CLICKING
+    // ========================================
+
+    document.querySelectorAll(
+        ".template-option"
+    ).forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const template =
+                    this.dataset.template;
+
+
+                if (
+                    this.classList.contains(
+                        "locked"
+                    )
+                ) {
+
+                    if (
+                        template === "modern"
+                    ) {
+
+                        alert(
+                            "Modern Executive is available with the Professional CV plan."
+                        );
+
+                    }
+
+                    else if (
+                        template === "premium"
+                    ) {
+
+                        alert(
+                            "Premium Executive is available with the Career Package."
+                        );
+
+                    }
+
+                    return;
+                }
+
+
+                document.querySelectorAll(
+                    ".template-option"
+                ).forEach(function (item) {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                applyTemplate(template);
+
+            }
+        );
+
+    });
+
+}
+
+// ========================================
+// START
+// ========================================
+
+loadCVBuilder();
+
+</script>
+
+
+</body>
+
+</html>
