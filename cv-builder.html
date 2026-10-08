@@ -671,8 +671,44 @@
 </head>
 
 
-<body>
+<body class="cv-builder-page">
 
+
+    <header class="header">
+
+    <div class="logo">
+        CVPro<span>Nigeria</span>
+    </div>
+
+    <nav class="nav">
+
+        <a href="customer-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="order.html">
+            New Order
+        </a>
+
+        <a href="track-order.html">
+            Track Order
+        </a>
+
+        <a href="customer-dashboard.html#my-cv">
+            My CV
+        </a>
+
+        <button
+            type="button"
+            id="logout-button"
+            class="nav-button"
+        >
+            Logout
+        </button>
+
+    </nav>
+
+</header>
 
 <div class="cv-builder-container">
 
@@ -1150,6 +1186,14 @@ async function loadCVBuilder() {
             return;
         }
 
+        // Check if this user is an admin
+const adminEmails = [
+    "fiddan432@gmail.com"
+];
+
+const isAdmin =
+    adminEmails.includes(user.email);
+
 
         const {
             data: order,
@@ -1176,7 +1220,35 @@ async function loadCVBuilder() {
                 "Order not found."
             );
         }
+// Secure CV Builder access
+if (isAdmin) {
 
+    // Admin can work on any order
+
+} else {
+
+    // Customer must own the order
+    if (order.user_id !== user.id) {
+
+        alert(
+            "You do not have permission to access this order."
+        );
+
+        window.location.href =
+            "customer-dashboard.html";
+
+        return;
+    }
+
+    // Customer can only access a completed order
+    if (order.status !== "completed") {
+
+        window.location.href =
+            "customer-dashboard.html";
+
+        return;
+    }
+}
         // ========================================
 // CUSTOMER PLAN
 // ========================================
@@ -1524,16 +1596,12 @@ document.getElementById(
 
                     .from("orders")
 
-                    .select(
-                        "id, user_id"
-                    )
-
-                    .eq(
-                        "id",
-                        orderId
-                    )
-
-                    .single();
+                    .select("*")
+.eq(
+    "id",
+    orderId
+)
+.single();
 
 
             if (orderError) {
@@ -1543,12 +1611,15 @@ document.getElementById(
             console.log("SAVE CV USER:", user);
             console.log("SAVE CV USER ID:", user.id);
 
+            console.log("ADMIN USER ID:", user.id);
+            console.log("ORDER USER ID:", order.user_id);
+
             const cvData = {
 
                 order_id:
                     order.id,
 
-                user_id: user.id,
+                user_id: order.user_id,
 
                 professional_title:
                     document.getElementById(
@@ -1693,7 +1764,33 @@ document.getElementById(
     "click",
     async function () {
 
-        const button = this;
+    const button = this;
+
+    // Check that the order is completed
+    const {
+        data: order,
+        error: orderError
+    } = await supabaseClient
+        .from("orders")
+        .select("status")
+        .eq("id", orderId)
+        .single();
+
+    if (orderError || !order) {
+        showMessage(
+            "Unable to verify your order.",
+            "#d62828"
+        );
+        return;
+    }
+
+    if (order.status !== "completed") {
+        showMessage(
+            "Your CV is not ready for download yet.",
+            "#d62828"
+        );
+        return;
+    }
 
         button.disabled = true;
 
@@ -2943,6 +3040,7 @@ function setupTemplateAccess() {
 // ========================================
 
 loadCVBuilder();
+
 
 </script>
 

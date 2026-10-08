@@ -21,37 +21,39 @@
 
 <body>
 
-    <header class="header">
+    <header class="header customer-dashboard-header">
 
         <div class="logo">
             CVPro<span>Nigeria</span>
         </div>
 
         <nav class="nav">
-
-            <a href="index.html">
-                Home
+            <a href="customer-dashboard.html">
+                Dashboard
             </a>
-
             <a href="order.html">
                 New Order
             </a>
 
-            <a href="track-order.html">
-                Track Order
-            </a>
+    <a href="track-order.html">
+        Track Order
+    </a>
 
-            <button
-                type="button"
-                id="customer-logout"
-                class="nav-button"
-            >
-                Logout
-            </button>
+    <a href="customer-dashboard.html#my-cv">
+        My CV
+    </a>
 
-        </nav>
+    <button
+        type="button"
+        id="logout-button"
+        class="nav-button"
+    >
+        Logout
+    </button>
 
+</nav>
     </header>
+
 
 
     <main class="customer-dashboard">
@@ -72,10 +74,78 @@
 
         </div>
 
+    <!-- ================================
+         DASHBOARD OVERVIEW
+    ================================= -->
+
+    <section class="dashboard-overview">
+
+        <div class="overview-card">
+            <span class="overview-icon">📦</span>
+            <div>
+                <p>Total Orders</p>
+                <h3 id="customer-total-orders">0</h3>
+            </div>
+        </div>
+
+
+        <div class="overview-card">
+            <span class="overview-icon">⏳</span>
+            <div>
+                <p>Pending</p>
+                <h3 id="customer-pending-orders">0</h3>
+            </div>
+        </div>
+
+
+        <div class="overview-card">
+            <span class="overview-icon">🛠️</span>
+            <div>
+                <p>In Progress</p>
+                <h3 id="customer-progress-orders">0</h3>
+            </div>
+        </div>
+
+
+        <div class="overview-card">
+            <span class="overview-icon">✅</span>
+            <div>
+                <p>Completed</p>
+                <h3 id="customer-completed-orders">0</h3>
+            </div>
+        </div>
+
+    </section>
+
+
 
         <section class="customer-orders">
 
-                    </section>
+    <div class="customer-orders-header">
+
+        <h2>
+            My Orders
+        </h2>
+
+        <a
+            href="order.html"
+            class="submit-button"
+        >
+            Create New Order
+        </a>
+
+    </div>
+
+
+    <div id="customer-orders-container">
+
+        <p class="customer-loading">
+            Loading your orders...
+        </p>
+
+    </div>
+
+</section>
 
 
         <!-- ================================
@@ -96,12 +166,6 @@
                     </h2>
                 </div>
 
-                <a
-                    href="order.html"
-                    class="submit-button"
-                >
-                    Create New CV
-                </a>
 
             </div>
 

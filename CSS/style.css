@@ -2314,3 +2314,911 @@ footer {
     opacity: 0.6;
     cursor: not-allowed;
 }
+/* ========================================
+   CUSTOMER CV CARD
+======================================== */
+
+.customer-cv-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+.customer-cv-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.customer-cv-info h3 {
+    margin: 0 0 12px;
+    font-size: 20px;
+}
+
+.customer-cv-info p {
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+.customer-cv-actions {
+    flex-shrink: 0;
+}
+
+.customer-cv-actions .submit-button {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+
+    .customer-cv-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .customer-cv-actions {
+        width: 100%;
+    }
+
+    .customer-cv-actions .submit-button {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+}
+/* ========================================
+   CUSTOMER CV ACTION BUTTONS
+======================================== */
+
+.customer-cv-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.customer-cv-actions .submit-button,
+.customer-cv-actions .cv-download-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 42px;
+    box-sizing: border-box;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    line-height: 1;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.customer-cv-actions .submit-button {
+    background: #635bff;
+    color: #ffffff;
+    border: 1px solid #635bff;
+}
+
+.customer-cv-actions .cv-download-button {
+    background: #111827;
+    color: #ffffff;
+    border: 1px solid #111827;
+}
+
+.customer-cv-actions .submit-button:hover,
+.customer-cv-actions .cv-download-button:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+
+    .customer-cv-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .customer-cv-actions .submit-button,
+    .customer-cv-actions .cv-download-button {
+        width: 100%;
+    }
+
+}
+.cv-builder-page {
+    padding-top: 20px;
+}
+
+.cv-builder-page .header {
+    margin-bottom: 30px;
+}
+.customer-dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.customer-dashboard-header .nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.customer-dashboard-header .nav a,
+.customer-dashboard-header .nav button {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.customer-dashboard-header .nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+    .customer-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .customer-dashboard-header .nav {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+}
+/* ========================================
+CUSTOMER DASHBOARD OVERVIEW
+======================================== */
+
+.dashboard-overview {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
+margin: 30px 0 40px;
+}
+
+.overview-card {
+background: #ffffff;
+border: 1px solid #e8e8f0;
+border-radius: 16px;
+padding: 22px;
+display: flex;
+align-items: center;
+gap: 15px;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.overview-icon {
+width: 48px;
+height: 48px;
+border-radius: 12px;
+background: #f0efff;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 22px;
+flex-shrink: 0;
+}
+
+.overview-card p {
+margin: 0 0 5px;
+font-size: 13px;
+color: #777;
+}
+
+.overview-card h3 {
+margin: 0;
+font-size: 25px;
+color: #222;
+}
+
+/* ========================================
+MOBILE DASHBOARD
+======================================== */
+
+@media (max-width: 768px) {
+
+.dashboard-overview {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 25px 0 30px;
+}
+
+.overview-card {
+    padding: 16px;
+    border-radius: 14px;
+    gap: 10px;
+}
+
+.overview-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+}
+
+.overview-card p {
+    font-size: 12px;
+}
+
+.overview-card h3 {
+    font-size: 21px;
+}
+}
+/* ========================================
+   CUSTOMER DASHBOARD POLISH
+======================================== */
+
+.customer-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 25px 80px;
+}
+
+.customer-dashboard > .customer-dashboard-header {
+    margin-bottom: 10px;
+}
+
+.customer-dashboard > .customer-dashboard-header h1 {
+    margin-bottom: 8px;
+    font-size: 36px;
+}
+
+.customer-dashboard > .customer-dashboard-header p:last-child {
+    color: #777;
+    font-size: 16px;
+}
+
+.customer-orders,
+.customer-cv {
+    background: #ffffff;
+    border: 1px solid #e8e8f0;
+    border-radius: 18px;
+    padding: 28px;
+    margin-top: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.customer-orders-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.customer-orders-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.customer-orders-header .section-small {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+
+    .customer-dashboard {
+        padding: 30px 16px 60px;
+    }
+
+    .customer-dashboard > .customer-dashboard-header h1 {
+        font-size: 28px;
+    }
+
+    .customer-orders,
+    .customer-cv {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .customer-orders-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .customer-orders-header .submit-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* ========================================
+   CUSTOMER ORDER CARDS
+======================================== */
+
+.customer-order-card {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background: #fafaff;
+    border: 1px solid #e8e8f0;
+    border-radius: 14px;
+    transition: 0.2s ease;
+}
+
+.customer-order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.customer-order-main {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.customer-order-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0efff;
+    border-radius: 12px;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.customer-order-main span,
+.customer-order-info span,
+.customer-order-status span {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.customer-order-main strong,
+.customer-order-info strong {
+    display: block;
+    font-size: 14px;
+    color: #222;
+}
+
+.customer-order-status strong {
+    display: inline-block;
+    font-size: 13px;
+}
+
+.view-order-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 9px;
+    background: #635bff;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.view-order-button:hover {
+    opacity: 0.9;
+}
+
+/* MOBILE ORDER CARDS */
+
+@media (max-width: 900px) {
+
+    .customer-order-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .customer-order-main {
+        grid-column: 1 / -1;
+    }
+
+    .customer-order-action {
+        grid-column: 1 / -1;
+    }
+
+    .view-order-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .customer-order-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .customer-order-main,
+    .customer-order-action {
+        grid-column: auto;
+    }
+}
+/* ========================================
+   MY CV SECTION
+======================================== */
+
+.customer-cv {
+    margin-top: 30px;
+}
+
+.customer-cv-container {
+    display: grid;
+    gap: 15px;
+}
+
+.customer-cv-card {
+    background: #fafaff;
+    border: 1px solid #e8e8f0;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.customer-cv-card h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+    color: #222;
+}
+
+.customer-cv-card p {
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.customer-cv-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.customer-cv-actions a {
+    text-decoration: none;
+}
+
+.cv-download-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 9px;
+    background: #635bff;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cv-edit-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 9px;
+    background: #eeeeff;
+    color: #635bff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.cv-download-button:hover,
+.cv-edit-button:hover {
+    opacity: 0.9;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .customer-cv-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .customer-cv-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .customer-cv-actions a {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
+/* ========================================
+   CUSTOMER DASHBOARD STATES
+======================================== */
+
+.customer-loading,
+.customer-error,
+.customer-empty {
+    text-align: center;
+    padding: 35px 20px;
+    border-radius: 14px;
+    background: #fafaff;
+    border: 1px dashed #ddddec;
+}
+
+.customer-loading {
+    color: #777;
+}
+
+.customer-error {
+    color: #d62828;
+}
+
+.customer-empty h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    color: #222;
+}
+
+.customer-empty p {
+    margin: 0 0 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+.customer-empty .submit-button {
+    display: inline-block;
+    text-decoration: none;
+}
+/* ========================================
+   CUSTOMER DASHBOARD NAVIGATION
+======================================== */
+
+.customer-dashboard-header {
+    position: relative;
+}
+
+.customer-dashboard-header .nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.customer-dashboard-header .nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.customer-dashboard-header .nav a:hover {
+    color: #635bff;
+}
+
+.customer-dashboard-header .nav-button {
+    border: none;
+    background: #635bff;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.customer-dashboard-header .nav-button:hover {
+    opacity: 0.9;
+}
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 768px) {
+
+    .customer-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .customer-dashboard-header .nav {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .customer-dashboard-header .nav a,
+    .customer-dashboard-header .nav-button {
+        text-align: center;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .customer-dashboard-header .nav-button {
+        width: 100%;
+    }
+}
+/* ========================================
+   PROFESSIONAL CV TYPOGRAPHY
+======================================== */
+
+.cv-preview {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    line-height: 1.5;
+}
+
+.cv-preview h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    margin-bottom: 5px;
+}
+
+.cv-preview h2 {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.cv-preview h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.cv-preview p {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.cv-preview ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.cv-preview li {
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.cv-preview .cv-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+}
+
+.cv-preview .cv-contact {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+}
+
+.cv-preview .cv-section {
+    margin-top: 22px;
+}
+
+.cv-preview .cv-section-title {
+    border-bottom: 2px solid #222;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+/* ========================================
+   PROFESSIONAL CV SPACING
+======================================== */
+
+.cv-preview {
+    padding: 40px 45px;
+    background: #ffffff;
+}
+
+.cv-preview section {
+    margin-bottom: 22px;
+}
+
+.cv-preview .cv-section {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.cv-preview .cv-section-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+}
+
+.cv-preview .cv-header {
+    margin-bottom: 25px;
+}
+
+.cv-preview .cv-header h1 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.cv-preview .cv-header p {
+    margin-bottom: 4px;
+}
+
+.cv-preview .experience-item,
+.cv-preview .education-item,
+.cv-preview .project-item {
+    margin-bottom: 16px;
+}
+
+.cv-preview .experience-item:last-child,
+.cv-preview .education-item:last-child,
+.cv-preview .project-item:last-child {
+    margin-bottom: 0;
+}
+
+.cv-preview p {
+    line-height: 1.6;
+}
+
+.cv-preview li {
+    line-height: 1.5;
+}
+/* ========================================
+   PROFESSIONAL CV HEADER
+======================================== */
+
+.cv-preview .cv-header {
+    text-align: left;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #222;
+    margin-bottom: 25px;
+}
+
+.cv-preview .cv-header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin: 0 0 6px;
+}
+
+.cv-preview .cv-header .cv-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.cv-preview .cv-header .cv-contact {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.cv-preview .cv-header .cv-contact a {
+    color: inherit;
+    text-decoration: none;
+}
+/* ========================================
+   EXPERIENCE & EDUCATION
+======================================== */
+
+.cv-preview .experience-item,
+.cv-preview .education-item {
+    position: relative;
+    padding-left: 15px;
+    border-left: 3px solid #635bff;
+}
+
+.cv-preview .experience-item h3,
+.cv-preview .education-item h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cv-preview .experience-item .date,
+.cv-preview .education-item .date {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 7px;
+}
+
+.cv-preview .experience-item p,
+.cv-preview .education-item p {
+    margin-bottom: 7px;
+}
+
+.cv-preview .experience-item ul,
+.cv-preview .education-item ul {
+    margin-top: 7px;
+}
+
+/* Keep entries together when creating the PDF */
+
+.cv-preview .experience-item,
+.cv-preview .education-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+/* ========================================
+   SKILLS, CERTIFICATIONS & PROJECTS
+======================================== */
+
+.cv-preview .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.cv-preview .skill-item {
+    display: inline-block;
+    padding: 6px 10px;
+    background: #f1f0ff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #444;
+}
+
+.cv-preview .certification-item {
+    margin-bottom: 10px;
+    padding-left: 12px;
+    border-left: 3px solid #635bff;
+}
+
+.cv-preview .certification-item strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.cv-preview .certification-item span {
+    font-size: 12px;
+    color: #777;
+}
+
+.cv-preview .project-item {
+    margin-bottom: 15px;
+    padding: 14px;
+    background: #fafaff;
+    border: 1px solid #e8e8f0;
+    border-radius: 8px;
+}
+
+.cv-preview .project-item h3 {
+    margin: 0 0 5px;
+    font-size: 14px;
+}
+
+.cv-preview .project-item p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.cv-preview .skills-list,
+.cv-preview .certification-item,
+.cv-preview .project-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}

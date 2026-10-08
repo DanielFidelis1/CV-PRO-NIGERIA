@@ -249,6 +249,21 @@ if (ordersContainer) {
                 return;
             }
 
+            // Check that this account is an admin
+const adminEmails = [
+    "fiddan432@gmail.com"
+];
+
+if (!adminEmails.includes(user.email)) {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href =
+        "login.html";
+
+    return;
+}
+
 
             // Get orders
 
@@ -269,7 +284,6 @@ if (ordersContainer) {
             if (error) {
                 throw error;
             }
-
 
             // Statistics
 
@@ -683,6 +697,18 @@ if (adminLoginForm) {
                 if (!data.user) {
                     throw new Error("Login failed.");
                 }
+                // Check that this account is an admin
+        const adminEmails = [
+            "fiddan432@gmail.com"
+        ];
+        
+        if (!adminEmails.includes(data.user.email)) {
+            
+            await supabaseClient.auth.signOut();
+            throw new Error(
+                "You do not have permission to access the admin dashboard."
+            );
+        }
 
                 // Login successful
                 window.location.href =
@@ -1322,6 +1348,7 @@ if (customerOrdersContainer) {
                     `Welcome back, ${customerName}.`;
             }
 
+            console.log("CUSTOMER USER ID:", user.id);
 
             const {
                 data: orders,
@@ -1345,8 +1372,76 @@ if (customerOrdersContainer) {
             if (error) {
                 throw error;
             }
+            console.log("CUSTOMER ORDERS:", orders);
+
+// ========================================
+// UPDATE CUSTOMER DASHBOARD STATISTICS
+// ========================================
+
+const totalElement =
+    document.getElementById(
+        "customer-total-orders"
+    );
+
+const pendingElement =
+    document.getElementById(
+        "customer-pending-orders"
+    );
+
+const progressElement =
+    document.getElementById(
+        "customer-progress-orders"
+    );
+
+const completedElement =
+    document.getElementById(
+        "customer-completed-orders"
+    );
 
 
+const total =
+    orders.length;
+
+const pending =
+    orders.filter(
+        order => order.status === "pending"
+    ).length;
+
+const progress =
+    orders.filter(
+        order => order.status === "in_progress"
+    ).length;
+
+const completed =
+    orders.filter(
+        order => order.status === "completed"
+    ).length;
+
+
+if (totalElement) {
+    totalElement.textContent = total;
+}
+
+if (pendingElement) {
+    pendingElement.textContent = pending;
+}
+
+if (progressElement) {
+    progressElement.textContent = progress;
+}
+
+if (completedElement) {
+    completedElement.textContent = completed;
+
+
+}
+
+console.log("CUSTOMER DASHBOARD STATS:", {
+    total,
+    pending,
+    progress,
+    completed
+});
             if (!orders || orders.length === 0) {
 
                 customerOrdersContainer.innerHTML = `
@@ -1642,57 +1737,115 @@ async function loadCustomerCVs() {
 
             return `
 
-                <div class="customer-cv-card">
+    <div class="customer-cv-card">
 
-                    <div class="customer-cv-info">
+        <div class="customer-cv-info">
 
-                        <h3>
-                            ${cv.professional_title || "Professional CV"}
-                        </h3>
+            <h3>
+                ${cv.professional_title || "Professional CV"}
+            </h3>
 
-                        <p>
-                            <strong>
-                                Plan:
-                            </strong>
-                            ${plan}
-                        </p>
+            <p>
+                <strong>
+                    Plan:
+                </strong>
+                ${plan}
+            </p>
 
-                        <p>
-                            <strong>
-                                Order:
-                            </strong>
-                            ${reference}
-                        </p>
+            <p>
+                <strong>
+                    Order:
+                </strong>
+                ${reference}
+            </p>
 
-                        <p>
-                            <strong>
-                                Last updated:
-                            </strong>
-                            ${updatedDate}
-                        </p>
+            <p>
+                <strong>
+                    Last updated:
+                </strong>
+                ${updatedDate}
+            </p>
 
-                    </div>
+        </div>
 
 
-                    <div class="customer-cv-actions">
+        <div class="customer-cv-actions">
 
-                        <a
-                            href="cv-builder.html?order=${encodeURIComponent(
-                                cv.order_id
-                            )}"
-                            class="submit-button"
-                        >
-                            Edit CV
-                        </a>
+            ${
+                cv.orders &&
+                cv.orders.status === "completed"
 
-                    </div>
+                ? `
 
-                </div>
+                    <a
+                        href="cv-builder.html?order=${encodeURIComponent(
+                            cv.order_id
+                        )}"
+                        class="submit-button"
+                    >
+                        Edit CV
+                    </a>
 
-            `;
+                    <button
+                        type="button"
+                        class="cv-download-button"
+                        data-order-id="${cv.order_id}"
+                    >
+                        Download PDF
+                    </button>
+
+                `
+
+                : cv.orders &&
+                  cv.orders.status === "in_progress"
+
+                ? `
+
+                    <span class="cv-status-message">
+                        Your CV is being prepared
+                    </span>
+
+                `
+
+                : `
+
+                    <span class="cv-status-message">
+                        Waiting to be processed
+                    </span>
+
+                `
+            }
+
+        </div>
+
+    </div>
+
+`;
 
         }).join("");
 
+        document
+    .querySelectorAll(".cv-download-button")
+    .forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const orderId =
+                    this.dataset.orderId;
+
+                console.log(
+                    "CLICKED DOWNLOAD ORDER ID:",
+                    orderId
+                );
+
+                downloadCustomerCV(orderId);
+
+            }
+        );
+
+    });
 
     } catch (error) {
 
@@ -1706,6 +1859,82 @@ async function loadCustomerCVs() {
                 Something went wrong while loading your CV.
             </p>
         `;
+    }
+}
+// ========================================
+// DOWNLOAD CUSTOMER CV
+// ========================================
+
+async function downloadCustomerCV(orderId) {
+
+    try {
+
+        const {
+            data: {
+                user
+            },
+            error: authError
+        } = await supabaseClient.auth.getUser();
+
+        if (authError || !user) {
+
+            window.location.href = "login.html";
+
+            return;
+        }
+
+        // Get the customer's saved CV
+        const {
+            data: cv,
+            error: cvError
+        } = await supabaseClient
+            .from("cv_documents")
+            .select("*")
+            .eq("order_id", orderId)
+            .eq("user_id", user.id)
+            .maybeSingle();
+
+        if (cvError) {
+
+            console.error(
+                "Download CV error:",
+                cvError
+            );
+
+            alert(
+                "Unable to load your CV."
+            );
+
+            return;
+        }
+
+        console.log("DOWNLOAD USER ID:", user.id);
+        console.log("DOWNLOAD ORDER ID:", orderId);
+        console.log("DOWNLOAD CV:", cv);
+        
+        if (!cv) {
+            
+            alert(
+                "Your CV is not ready to download yet."
+            );
+            return;
+        }
+
+        // Open CV Builder
+        window.location.href =
+            "cv-builder.html?order=" +
+            encodeURIComponent(orderId);
+
+    } catch (error) {
+
+        console.error(
+            "Download CV error:",
+            error
+        );
+
+        alert(
+            "Something went wrong."
+        );
     }
 }
 // ========================================
